@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #00a8e8;
+  --text-color: #2c3e50;
+  --text-muted: #6c757d;
+  --bg-light: #f8f9fa;
+  --card-color: #007bff;
+  --btn-color: #007bff;
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.15);
+  --transition-base: all 0.3s ease;
+  --border-radius: 15px;
+}
+
+.services-container {
+  font-family: 'Poppins', sans-serif;
+  padding: 2rem 0;
+  background: linear-gradient(to bottom, #ffffff, var(--bg-light));
+}
+
+.services-title {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.services-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 2px;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  border: 2px solid #007bff;
+  background: transparent;
+  color: #007bff;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: #007bff;
+  color: white;
+}
+
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.service-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.service-section.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.service-icon {
+  font-size: 2.5rem;
+}
+
+.service-title {
+  font-size: 2rem;
+  color: #333;
+  margin: 0;
+}
+
+.service-card {
+  height: 100%;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+}
+
+.service-card .card-body {
+  padding: 1.5rem;
+}
+
+.category-title {
+  color: var(--card-color, #007bff);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.category-description {
+  color: #666;
+  margin-bottom: 1rem;
+  min-height: 48px;
+}
+
+.price-tag {
+  background: var(--card-color, #007bff);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.book-btn {
+  width: 100%;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: none;
+  margin-top: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.book-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.book-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.book-btn:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Problem Description Box Styles */
+.problem-description-box {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 3rem;
+}
+
+.description-section-title {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.description-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.description-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.description-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.min-fare {
+  background: #e9ecef;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.problem-input {
+  border: 2px solid #dee2e6;
+  border-radius: 10px;
+  padding: 1rem;
+  resize: none;
+  transition: border-color 0.3s ease;
+}
+
+.problem-input:focus {
+  border-color: var(--card-color, #007bff);
+  box-shadow: none;
+}
+
+/* Common Issues Styles */
+.common-issues {
+  margin-top: 1rem;
+}
+
+.common-issues h6 {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.issues-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.issue-tag {
+  background: #e9ecef;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.issue-tag:hover {
+  background: var(--card-color, #007bff);
+  color: white;
+}
+
+/* Estimate Section Styles */
+.estimate-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.estimate-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.estimate-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.work-type {
+  color: #333;
+  font-weight: 500;
+}
+
+.price-range {
+  color: var(--card-color, #007bff);
+  font-weight: 600;
+}
+
+/* Submit Button Styles */
+.submit-button-wrapper {
+  margin-top: 1rem;
+}
+
+.submit-problem-btn {
+  width: 100%;
+  background: var(--btn-color, #007bff);
+  border: none;
+  padding: 1rem;
+  border-radius: 10px;
+  color: white;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.submit-problem-btn:hover {
+  background: var(--btn-color, #0056b3);
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  font-size: 1.2rem;
+}
+
+.min-fare-note {
+  position: absolute;
+  right: 1rem;
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* Booking Modal Styles */
+.modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.modal-header {
+  border-radius: 15px 15px 0 0;
+  padding: 1.5rem;
+}
+
+.modal-body {
+  padding: 2rem;
+}
+
+.modal-footer {
+  border-radius: 0 0 15px 15px;
+  padding: 1.5rem;
+}
+
+.form-control {
+  border-radius: 8px;
+  padding: 12px;
+  border: 1px solid #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--btn-color);
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+.form-control-plaintext {
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+/* Service Card Styles */
+.service-card {
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.service-card .card-body {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.category-title {
+  color: var(--card-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.category-description {
+  color: #6c757d;
+  margin-bottom: 1.5rem;
+  min-height: 48px;
+}
+
+.price-tag {
+  background-color: var(--card-color);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .description-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .filter-buttons {
+    flex-wrap: wrap;
+  }
+  
+  .service-title {
+    font-size: 1.5rem;
+  }
+  
+  .service-icon {
+    font-size: 2rem;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .book-btn {
+    padding: 10px 20px;
+  }
+  
+  .service-card {
+    margin-bottom: 1.5rem;
+  }
+} 

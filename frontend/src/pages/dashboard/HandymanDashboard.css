@@ -1,0 +1,103 @@
+.handyman-dashboard {
+  padding: 2rem 0;
+}
+
+.dashboard-title {
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.profile-card {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 1.5rem;
+}
+
+.profile-card .card-body {
+  padding: 1.5rem;
+}
+
+.profile-info {
+  margin-bottom: 1.5rem;
+}
+
+.profile-info p {
+  margin-bottom: 0.75rem;
+  color: #555;
+}
+
+.profile-info strong {
+  color: #333;
+  margin-right: 0.5rem;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #555;
+}
+
+.form-control {
+  border: 1px solid #ced4da;
+  padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.alert {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.d-grid {
+  margin-top: 1rem;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5c636a;
+  border-color: #565e64;
+} 
