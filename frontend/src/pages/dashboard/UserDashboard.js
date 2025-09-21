@@ -1,5 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Table, Button, Modal, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Table,
+  Button,
+  Modal,
+  Form,
+} from "react-bootstrap";
 
 function UserDashboard() {
   const [bookings, setBookings] = useState([]);
@@ -8,87 +17,63 @@ function UserDashboard() {
   const [editedProfile, setEditedProfile] = useState({});
 
   useEffect(() => {
-    fetchBookings();
-    fetchProfile();
+    // Mock data for demo purposes
+    const mockProfile = {
+      name: "John Doe",
+      email: localStorage.getItem("userEmail") || "customer@test.com",
+      phone: "+92 300 1234567",
+      address: "123 Main Street, Lahore, Pakistan",
+    };
+
+    const mockBookings = [
+      {
+        id: 1,
+        service: "Plumbing Repair",
+        category: "Plumbing",
+        date: "2024-01-15",
+        status: "completed",
+      },
+      {
+        id: 2,
+        service: "Electrical Installation",
+        category: "Electrical",
+        date: "2024-01-20",
+        status: "pending",
+      },
+      {
+        id: 3,
+        service: "AC Maintenance",
+        category: "HVAC",
+        date: "2024-01-25",
+        status: "accepted",
+      },
+    ];
+
+    setProfile(mockProfile);
+    setEditedProfile(mockProfile);
+    setBookings(mockBookings);
   }, []);
 
-  const fetchBookings = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/api/bookings/user', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setBookings(data);
-      }
-    } catch (err) {
-      console.error('Error fetching bookings:', err);
-    }
-  };
-
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch('http://localhost:8000/api/user/profile', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
-      const data = await response.json();
-      if (response.ok) {
-        setProfile(data);
-        setEditedProfile(data);
-      }
-    } catch (err) {
-      console.error('Error fetching profile:', err);
-    }
-  };
-
-  const handleProfileUpdate = async (e) => {
+  const handleProfileUpdate = (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:8000/api/user/profile', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
-        body: JSON.stringify(editedProfile)
-      });
-
-      if (response.ok) {
-        setProfile(editedProfile);
-        setShowEditProfile(false);
-      }
-    } catch (err) {
-      console.error('Error updating profile:', err);
-    }
+    // Mock profile update
+    setProfile(editedProfile);
+    setShowEditProfile(false);
+    alert("Profile updated successfully!");
   };
 
-  const handleCancelBooking = async (bookingId) => {
-    if (window.confirm('Are you sure you want to cancel this booking?')) {
-      try {
-        const response = await fetch(`http://localhost:8000/api/bookings/${bookingId}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-
-        if (response.ok) {
-          fetchBookings();
-        }
-      } catch (err) {
-        console.error('Error canceling booking:', err);
-      }
+  const handleCancelBooking = (bookingId) => {
+    if (window.confirm("Are you sure you want to cancel this booking?")) {
+      // Mock booking cancellation
+      setBookings(bookings.filter((booking) => booking.id !== bookingId));
+      alert("Booking cancelled successfully!");
     }
   };
 
   return (
     <Container className="my-5">
       <h2 className="mb-4">User Dashboard</h2>
-      
+
       <Row>
         {/* Profile Section */}
         <Col md={4}>
@@ -96,16 +81,28 @@ function UserDashboard() {
             <Card.Body>
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h4 className="mb-0">Profile</h4>
-                <Button variant="primary" size="sm" onClick={() => setShowEditProfile(true)}>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => setShowEditProfile(true)}
+                >
                   Edit Profile
                 </Button>
               </div>
               {profile && (
                 <div>
-                  <p><strong>Name:</strong> {profile.name}</p>
-                  <p><strong>Email:</strong> {profile.email}</p>
-                  <p><strong>Phone:</strong> {profile.phone}</p>
-                  <p><strong>Address:</strong> {profile.address}</p>
+                  <p>
+                    <strong>Name:</strong> {profile.name}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {profile.email}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {profile.phone}
+                  </p>
+                  <p>
+                    <strong>Address:</strong> {profile.address}
+                  </p>
                 </div>
               )}
             </Card.Body>
@@ -135,7 +132,7 @@ function UserDashboard() {
                       <td>{new Date(booking.date).toLocaleDateString()}</td>
                       <td>{booking.status}</td>
                       <td>
-                        {booking.status === 'pending' && (
+                        {booking.status === "pending" && (
                           <Button
                             variant="danger"
                             size="sm"
@@ -165,8 +162,10 @@ function UserDashboard() {
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                value={editedProfile.name || ''}
-                onChange={(e) => setEditedProfile({ ...editedProfile, name: e.target.value })}
+                value={editedProfile.name || ""}
+                onChange={(e) =>
+                  setEditedProfile({ ...editedProfile, name: e.target.value })
+                }
                 required
               />
             </Form.Group>
@@ -174,8 +173,10 @@ function UserDashboard() {
               <Form.Label>Phone</Form.Label>
               <Form.Control
                 type="tel"
-                value={editedProfile.phone || ''}
-                onChange={(e) => setEditedProfile({ ...editedProfile, phone: e.target.value })}
+                value={editedProfile.phone || ""}
+                onChange={(e) =>
+                  setEditedProfile({ ...editedProfile, phone: e.target.value })
+                }
                 required
               />
             </Form.Group>
@@ -183,8 +184,13 @@ function UserDashboard() {
               <Form.Label>Address</Form.Label>
               <Form.Control
                 type="text"
-                value={editedProfile.address || ''}
-                onChange={(e) => setEditedProfile({ ...editedProfile, address: e.target.value })}
+                value={editedProfile.address || ""}
+                onChange={(e) =>
+                  setEditedProfile({
+                    ...editedProfile,
+                    address: e.target.value,
+                  })
+                }
                 required
               />
             </Form.Group>
@@ -200,4 +206,4 @@ function UserDashboard() {
   );
 }
 
-export default UserDashboard; 
+export default UserDashboard;
